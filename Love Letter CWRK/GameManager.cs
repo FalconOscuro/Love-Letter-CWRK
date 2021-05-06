@@ -7,6 +7,25 @@ namespace Love_Letter_CWRK
     class GameManager
     {
 
+        public static bool IsCard(string cardName)
+        {
+
+            switch (cardName.ToLower())
+            {
+                case "guard":
+                case "priest":
+                case "baron":
+                case "handmaid":
+                case "prince":
+                case "king":
+                case "countess":
+                case "princess":
+                    return true;
+            }
+
+            return false;
+        }
+
         static Card[] StartingDeck = {
             new Cards.Guard(), new Cards.Guard(), new Cards.Guard(), new Cards.Guard(), new Cards.Guard(),
             new Cards.Priest(), new Cards.Priest(),
