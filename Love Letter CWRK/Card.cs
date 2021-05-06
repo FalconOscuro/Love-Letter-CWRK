@@ -112,6 +112,31 @@ namespace Love_Letter_CWRK
 
         internal class Baron : Card
         {
+            public override void Play(ref Player targetPlayer, ref Player owner)
+            {
+                Card[] targetPlayerHand = targetPlayer.GetHand();
+                uint targetTotal = 0;
+                for (int i = 0; i < 2; i++)
+                {
+                    Console.WriteLine(targetPlayerHand[i].GetName());
+                    targetTotal += targetPlayerHand[i].GetValue();
+                }
+
+                Card[] ownerHand = owner.GetHand();
+                uint ownerTotal = 0;
+                for (int i = 0; i < 2; i++)
+                {
+                    Console.WriteLine(ownerHand[i].GetName());
+                    ownerTotal += ownerHand[i].GetValue();
+                }
+
+                if (targetTotal < ownerTotal)
+                    targetPlayer.SetOut(true);
+
+                else if (targetTotal > ownerTotal)
+                    owner.SetOut(true);
+            }
+
             new public const uint m_Value = 3;
 
             new public const string m_Name = "Baron";
