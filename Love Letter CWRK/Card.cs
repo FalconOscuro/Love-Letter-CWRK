@@ -209,6 +209,11 @@ namespace Love_Letter_CWRK
 
         internal class Princess : Card
         {
+            public override bool Playable(Card[] playerHand)
+            {
+                return false;
+            }
+
             new public const uint m_Value = 8;
 
             new public const string m_Name = "Princess";
