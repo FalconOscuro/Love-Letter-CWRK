@@ -10,7 +10,7 @@ namespace Love_Letter_CWRK
     class Card
     {
         public Card()
-        {}
+        { }
 
         /*
          * Run when a player plays this card
@@ -24,19 +24,34 @@ namespace Love_Letter_CWRK
             return true;
         }
 
+        public uint GetValue()
+        {
+            return m_Value;
+        }
+
         /*
          * The number value associated with this type of card
         */
         public const uint m_Value = 0;
+
+        public string GetName()
+        {
+            return m_Name;
+        }
 
         /*
          * This cards name
         */
         public const string m_Name = "";
 
+        public string GetEffectText()
+        {
+            return m_EffectText;
+        }
+
         /*
          * Plaintext describing the effect of the card when the play function is run
-        */ 
+        */
         public const string m_EffectText = "";
     }
 
@@ -44,6 +59,33 @@ namespace Love_Letter_CWRK
     {
         class Guard : Card
         {
+            public override void Play(ref Player targetPlayer, ref Player owner) 
+            {
+                Console.WriteLine("Enter the name of the target card.");
+
+                string cardName;
+
+                // Do not continue until an existing card name is given
+                while (true)
+                {
+                    cardName = Console.ReadLine();
+
+                    if (cardName.ToLower() != "guard" && GameManager.IsCard(cardName))
+                        break;
+                }
+
+                // Get the hand of the target player
+                Card[] targetPlayerHand = targetPlayer.GetHand();
+
+                // If the given card is contained within the target players hand, they are out
+                for (int i = 0; i < 2; i++)
+                    if (targetPlayerHand[i].GetName() == cardName.ToLower())
+                    {
+                        targetPlayer.SetOut(true);
+                        break;
+                    }
+            }
+
             new public const uint m_Value = 1;
 
             new public const string m_Name = "Guard";
