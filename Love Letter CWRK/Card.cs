@@ -72,16 +72,10 @@ namespace Love_Letter_CWRK
                         break;
                 }
 
-                // Get the hand of the target player
-                Card[] targetPlayerHand = targetPlayer.GetHand();
 
                 // If the given card is contained within the target players hand, they are out
-                for (int i = 0; i < 2; i++)
-                    if (targetPlayerHand[i].GetName() == cardName.ToLower())
-                    {
-                        targetPlayer.SetOut(true);
-                        break;
-                    }
+                if (targetPlayer.GetHand()[0].GetName() == cardName.ToLower())
+                    targetPlayer.SetOut(true);
             }
 
             new public const uint m_Value = 1;
@@ -96,10 +90,7 @@ namespace Love_Letter_CWRK
         {
             public override void Play(ref Player targetPlayer, ref Player owner)
             {
-                // Get and then print the cards in the target players hand
-                Card[] targetPlayerHand = targetPlayer.GetHand();
-                for (int i = 0; i < 2; i++)
-                    Console.WriteLine(targetPlayerHand[i].GetName());
+                Console.WriteLine(targetPlayer.GetHand()[0].GetName());
             }
 
                 new public const uint m_Value = 2;
@@ -115,25 +106,17 @@ namespace Love_Letter_CWRK
             public override void Play(ref Player targetPlayer, ref Player owner)
             {
                 Card[] targetPlayerHand = targetPlayer.GetHand();
-                uint targetTotal = 0;
-                for (int i = 0; i < 2; i++)
-                {
-                    Console.WriteLine(targetPlayerHand[i].GetName());
-                    targetTotal += targetPlayerHand[i].GetValue();
-                }
+                uint targetValue = targetPlayerHand[0].GetValue();
+                Console.WriteLine(targetPlayerHand[0].GetName());
 
                 Card[] ownerHand = owner.GetHand();
-                uint ownerTotal = 0;
-                for (int i = 0; i < 2; i++)
-                {
-                    Console.WriteLine(ownerHand[i].GetName());
-                    ownerTotal += ownerHand[i].GetValue();
-                }
+                uint ownerValue = ownerHand[0].GetValue();
+                Console.WriteLine(ownerHand[0].GetName());
 
-                if (targetTotal < ownerTotal)
+                if (targetValue < ownerValue)
                     targetPlayer.SetOut(true);
 
-                else if (targetTotal > ownerTotal)
+                else if (targetValue > ownerValue)
                     owner.SetOut(true);
             }
 
