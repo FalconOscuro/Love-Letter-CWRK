@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Love_Letter_CWRK
 {
     /*
      * This is a purely virtual class describing & inherited by all cards in the game
     */
-    class Card
+    internal class Card
     {
         public Card()
         { }
@@ -57,9 +55,9 @@ namespace Love_Letter_CWRK
 
     namespace Cards
     {
-        class Guard : Card
+        internal class Guard : Card
         {
-            public override void Play(ref Player targetPlayer, ref Player owner) 
+            public override void Play(ref Player targetPlayer, ref Player owner)
             {
                 Console.WriteLine("Enter the name of the target card.");
 
@@ -90,13 +88,21 @@ namespace Love_Letter_CWRK
 
             new public const string m_Name = "Guard";
 
-            new public const string m_EffectText = 
+            new public const string m_EffectText =
                 "Name a non guard card and choose another player. If that player has that card he or she is out of the round.";
         }
 
-        class Priest : Card
+        internal class Priest : Card
         {
-            new public const uint m_Value = 2;
+            public override void Play(ref Player targetPlayer, ref Player owner)
+            {
+                // Get and then print the cards in the target players hand
+                Card[] targetPlayerHand = targetPlayer.GetHand();
+                for (int i = 0; i < 2; i++)
+                    Console.WriteLine(targetPlayerHand[i].GetName());
+            }
+
+                new public const uint m_Value = 2;
 
             new public const string m_Name = "Priest";
 
@@ -104,7 +110,7 @@ namespace Love_Letter_CWRK
                 "Look at another players hand.";
         }
 
-        class Baron : Card
+        internal class Baron : Card
         {
             new public const uint m_Value = 3;
 
@@ -114,7 +120,7 @@ namespace Love_Letter_CWRK
                 "You and another player secretly compare hands. The player with the lower value is out of the round.";
         }
 
-        class Handmaid : Card
+        internal class Handmaid : Card
         {
             new public const uint m_Value = 4;
 
@@ -124,7 +130,7 @@ namespace Love_Letter_CWRK
                 "Until your next turn, ignore all effects from other player's cards.";
         }
 
-        class Prince : Card
+        internal class Prince : Card
         {
             new public const uint m_Value = 5;
 
@@ -134,7 +140,7 @@ namespace Love_Letter_CWRK
                 "Choose any player (including yourself) to discard his or her hand and draw a new card.";
         }
 
-        class King : Card
+        internal class King : Card
         {
             new public const uint m_Value = 6;
 
@@ -144,7 +150,7 @@ namespace Love_Letter_CWRK
                 "Trade hands with another player of your choice.";
         }
 
-        class Countess : Card
+        internal class Countess : Card
         {
             new public const uint m_Value = 7;
 
@@ -154,7 +160,7 @@ namespace Love_Letter_CWRK
                 "If you have this card and the King or Prince in your hand, you must discard this card.";
         }
 
-        class Princess : Card
+        internal class Princess : Card
         {
             new public const uint m_Value = 8;
 
