@@ -147,6 +147,11 @@ namespace Love_Letter_CWRK
 
         internal class Handmaid : Card
         {
+            public override void Play(ref Player targetPlayer, ref Player owner)
+            {
+                owner.SetTargetable(false);
+            }
+
             new public const uint m_Value = 4;
 
             new public const string m_Name = "Handmaid";
