@@ -153,7 +153,15 @@ namespace Love_Letter_CWRK
                     targetPlayer.SetOut(true);
             }
 
-                new public const uint m_Value = 5;
+            public override bool Playable(Card[] playerHand)
+            {
+                if (playerHand[0].GetName() == "Countess" || playerHand[1].GetName() == "Countess")
+                    return false;
+
+                return true;
+            }
+
+            new public const uint m_Value = 5;
 
             new public const string m_Name = "Prince";
 
@@ -171,6 +179,14 @@ namespace Love_Letter_CWRK
 
                 ownerHand[0] = targetHand[0];
                 targetHand[0] = tempHand[0];
+            }
+
+            public override bool Playable(Card[] playerHand)
+            {
+                if (playerHand[0].GetName() == "Countess" || playerHand[1].GetName() == "Countess")
+                    return false;
+
+                return true;
             }
 
             new public const uint m_Value = 6;
