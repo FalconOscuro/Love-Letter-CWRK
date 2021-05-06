@@ -6,7 +6,15 @@ namespace Love_Letter_CWRK
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            while (true)
+            {
+                Player[] players = new Player[2];
+
+                for (int i = 0; i < 2; i++)
+                {
+
+                }
+            }
         }
     }
 }
