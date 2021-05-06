@@ -1,4 +1,6 @@
-﻿namespace Love_Letter_CWRK
+﻿using System;
+
+namespace Love_Letter_CWRK
 {
     /*
      * Class describing an individual player within the game
@@ -33,6 +35,20 @@
             m_Hand[1] = card;
 
             return true;
+        }
+
+        public void DiscardCard(int i)
+        {
+            int numDiscards = m_Discards.Length;
+            Array.Resize(ref m_Discards, numDiscards + 1);
+
+            m_Discards[numDiscards] = m_Hand[i];
+
+            // Ensure that position zero in a players hand is always populated
+            if (i == 0)
+                m_Hand[0] = m_Hand[1];
+
+            m_Hand[1] = new Card();
         }
 
         /*
