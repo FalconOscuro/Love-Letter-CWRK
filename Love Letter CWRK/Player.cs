@@ -37,7 +37,7 @@ namespace Love_Letter_CWRK
             return true;
         }
 
-        public void DiscardCard(int i)
+        public Card DiscardCard(int i)
         {
             int numDiscards = m_Discards.Length;
             Array.Resize(ref m_Discards, numDiscards + 1);
@@ -49,6 +49,8 @@ namespace Love_Letter_CWRK
                 m_Hand[0] = m_Hand[1];
 
             m_Hand[1] = new Card();
+
+            return m_Discards[numDiscards];
         }
 
         /*

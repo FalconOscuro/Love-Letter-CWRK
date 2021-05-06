@@ -163,6 +163,16 @@ namespace Love_Letter_CWRK
 
         internal class King : Card
         {
+            public override void Play(ref Player targetPlayer, ref Player owner)
+            {
+                var ownerHand = owner.GetHand();
+                var targetHand = targetPlayer.GetHand();
+                var tempHand = ownerHand;
+
+                ownerHand[0] = targetHand[0];
+                targetHand[0] = tempHand[0];
+            }
+
             new public const uint m_Value = 6;
 
             new public const string m_Name = "King";
