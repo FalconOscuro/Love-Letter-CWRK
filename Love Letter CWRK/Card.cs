@@ -145,7 +145,15 @@ namespace Love_Letter_CWRK
 
         internal class Prince : Card
         {
-            new public const uint m_Value = 5;
+            public override void Play(ref Player targetPlayer, ref Player owner)
+            {
+                Card discarded = targetPlayer.DiscardCard(0);
+
+                if (discarded.GetName() == "Princess")
+                    targetPlayer.SetOut(true);
+            }
+
+                new public const uint m_Value = 5;
 
             new public const string m_Name = "Prince";
 
